@@ -1,0 +1,33 @@
+﻿<Window x:Class="WpfApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication"
+		xmlns:system="clr-namespace:System;assembly=mscorlib"
+		mc:Ignorable="d"
+		
+		x:Name="MainWindowXaml"
+        Title="MainWindow" Height="450" Width="800" d:DataContext="{d:DesignInstance local:MyViewModel}">
+	
+	<StackPanel Orientation="Vertical" Margin="10">
+		<ComboBox ItemsSource="{Binding ListModels,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CurrentModel, UpdateSourceTrigger=PropertyChanged}" Height="50" Width="100" >
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{Binding Title}"/>
+						<Grid Grid.Column="1" Background="Black" Width="20" Height="20"/>
+					</Grid>
+					
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<TextBlock  Text="{Binding CurrentModel.NumberId, UpdateSourceTrigger=PropertyChanged}" Background="AliceBlue"/>
+		<Button Width="20" Height="20" Click="Button_Click"/>
+	</StackPanel>
+	
+</Window>
